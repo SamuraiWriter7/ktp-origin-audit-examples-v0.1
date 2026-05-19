@@ -1,0 +1,42 @@
+
+---
+
+## `CITATION.cff`
+
+```yaml
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "KTP Origin Audit Examples v0.1"
+version: "0.1.0"
+date-released: "2026-05-18"
+
+authors:
+  - name: "SamuraiWriter7"
+
+repository-code: "https://github.com/SamuraiWriter7/ktp-origin-audit-examples-v0.1"
+url: "https://github.com/SamuraiWriter7/ktp-origin-audit-examples-v0.1"
+
+abstract: >
+  KTP Origin Audit Examples v0.1 provides example origin-audit
+  records for applying the KTP Trace Intelligence Specification to
+  explicit citation, implicit absorption, blended influence, disputed
+  trace claims, and allocation-readiness review scenarios. The examples
+  demonstrate how possible origin relationships can be documented safely
+  without making final origin judgments or triggering automatic royalty
+  allocation.
+
+keywords:
+  - Kazene
+  - Kazene Trace Protocol
+  - KTP
+  - origin audit
+  - trace intelligence
+  - origin candidate
+  - implicit absorption
+  - blended influence
+  - dispute review
+  - allocation readiness
+  - AI governance
+  - Royalty OS
+
+license: MIT
