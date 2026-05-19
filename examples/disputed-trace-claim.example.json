@@ -1,0 +1,110 @@
+{
+  "trace_id": "ktp-origin-audit-disputed-trace-claim-0001",
+  "record_version": "0.1.0",
+  "created_at": "2026-05-18T12:00:00Z",
+  "updated_at": "2026-05-18T12:25:00Z",
+  "observer": {
+    "type": "hybrid",
+    "name": "KTP-Origin-Audit-Review-Process",
+    "identifier": "process:ktp-origin-audit-review:v0.1",
+    "confidence_policy": "Confidence is provisional and may change after dispute review. Disputed records must not be treated as final origin judgments or allocation triggers."
+  },
+  "target": {
+    "type": "article",
+    "title": "A proposed framework for AI trace review and creator value return",
+    "uri": "https://example.com/targets/ai-trace-review-creator-value-return",
+    "content_hash": "sha256:target-disputed-trace-claim-example-0001",
+    "captured_at": "2026-05-18T11:40:00Z",
+    "language": "en",
+    "summary": "An article proposing a system for identifying possible origin candidates, reviewing trace evidence, and connecting reviewed claims to creator value return mechanisms."
+  },
+  "origin_candidates": [
+    {
+      "origin_id": "kazene-origin-ktp-001",
+      "title": "Kazene Trace Protocol",
+      "uri": "https://example.com/origins/kazene-trace-protocol",
+      "content_hash": "sha256:origin-kazene-trace-protocol-example-0001",
+      "relation_type": "structural_similarity",
+      "confidence": 0.71,
+      "evidence_summary": "The target appears to share a similar high-level architecture: origin candidate detection, trace evidence recording, review or dispute handling, allocation readiness, and value circulation.",
+      "limitations": "The target does not explicitly cite Kazene Trace Protocol. The similarity may reflect shared AI governance vocabulary, independent convergence, or influence from multiple public discussions."
+    },
+    {
+      "origin_id": "general-origin-ai-provenance-001",
+      "title": "General AI Provenance and Attribution Discourse",
+      "uri": "https://example.com/origins/general-ai-provenance-discourse",
+      "content_hash": "sha256:origin-general-ai-provenance-example-0001",
+      "relation_type": "blended_influence",
+      "confidence": 0.52,
+      "evidence_summary": "The target also uses concepts common in broader AI provenance, attribution, content credential, and creator compensation discussions.",
+      "limitations": "This candidate is broad and may represent shared field-level influence rather than a specific origin."
+    }
+  ],
+  "evidence": {
+    "semantic_similarity_score": 0.63,
+    "structure_similarity_score": 0.72,
+    "conceptual_similarity_score": 0.69,
+    "citation_presence": false,
+    "metadata_presence": false,
+    "watermark_presence": false,
+    "chain_of_custody_presence": false,
+    "structure_fingerprint_presence": true,
+    "origin_token_presence": false,
+    "evidence_items": [
+      {
+        "evidence_id": "disputed-evidence-001",
+        "evidence_type": "structure_fingerprint",
+        "description": "A structure comparison suggests overlap in the sequence of trace observation, evidence recording, review, allocation readiness, and value return.",
+        "uri": "https://example.com/evidence/disputed-structure-comparison-0001",
+        "confidence": 0.72
+      },
+      {
+        "evidence_id": "disputed-evidence-002",
+        "evidence_type": "semantic_match",
+        "description": "Semantic comparison suggests moderate conceptual overlap but does not establish direct dependence.",
+        "confidence": 0.63
+      },
+      {
+        "evidence_id": "disputed-evidence-003",
+        "evidence_type": "human_observation",
+        "description": "A reviewer notes that the target may be independently derived from broader AI provenance discussions rather than from a specific Kazene origin.",
+        "confidence": 0.55
+      },
+      {
+        "evidence_id": "disputed-evidence-004",
+        "evidence_type": "ai_analysis",
+        "description": "LLM-assisted analysis recommends dispute review because the evidence supports possible structural similarity but not final origin attribution.",
+        "confidence": 0.61
+      }
+    ]
+  },
+  "analysis": {
+    "method": "hybrid_analysis",
+    "summary": "The target shows possible structural similarity to Kazene Trace Protocol, but the claim is disputed because the same elements may also arise from broader AI provenance and attribution discourse.",
+    "reasoning_notes": "The target includes a recognizable flow from trace detection to review and value return. However, the record lacks explicit citation, metadata, watermark evidence, or chain-of-custody proof. The overlap may be architectural rather than derivative.",
+    "uncertainty_notes": "This record should remain disputed until additional evidence is reviewed. Possible explanations include direct influence, indirect influence, field-level convergence, blended influence, or independent reconstruction."
+  },
+  "review_status": {
+    "state": "disputed",
+    "reviewer": "human-or-multi-wing-review-process",
+    "reviewed_at": "2026-05-18T12:20:00Z",
+    "notes": "The trace claim is disputed. No final origin conclusion should be drawn until the dispute process is completed."
+  },
+  "dispute_status": {
+    "disputed": true,
+    "dispute_id": "ktp-dispute-2026-0001",
+    "reason": "The claimed origin relationship may be overstated. Similarity may result from shared AI provenance discourse or independent convergence rather than direct influence.",
+    "status": "opened"
+  },
+  "allocation_readiness": {
+    "ready": false,
+    "reason": "This record is disputed and cannot proceed to allocation readiness until the dispute is reviewed and resolved.",
+    "required_next_step": "dispute_resolution"
+  },
+  "governance": {
+    "policy_reference": "ktp-origin-audit-example-policy-v0.1",
+    "jurisdiction": "unspecified",
+    "review_body": "dispute-review-or-multi-wing-review-process",
+    "notes": "This example demonstrates how a trace claim can remain visible as evidence while being explicitly marked as disputed and blocked from allocation."
+  }
+}
