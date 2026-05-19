@@ -1,0 +1,115 @@
+{
+  "trace_id": "ktp-origin-audit-allocation-readiness-review-0001",
+  "record_version": "0.1.0",
+  "created_at": "2026-05-18T13:10:00Z",
+  "updated_at": "2026-05-18T13:35:00Z",
+  "observer": {
+    "type": "hybrid",
+    "name": "KTP-Origin-Audit-Allocation-Readiness-Review",
+    "identifier": "process:ktp-allocation-readiness-review:v0.1",
+    "confidence_policy": "Confidence is based on explicit citation, structural relevance, conceptual alignment, review status, and absence of active dispute. Readiness does not mean automatic allocation."
+  },
+  "target": {
+    "type": "article",
+    "title": "Using Trace Intelligence Records for Responsible Value Allocation",
+    "uri": "https://example.com/targets/trace-intelligence-responsible-value-allocation",
+    "content_hash": "sha256:target-allocation-readiness-review-example-0001",
+    "captured_at": "2026-05-18T13:00:00Z",
+    "language": "en",
+    "summary": "An article explaining how reviewed trace intelligence records may support later allocation-readiness evaluation without triggering automatic royalty distribution."
+  },
+  "origin_candidates": [
+    {
+      "origin_id": "kazene-origin-trace-intelligence-spec-001",
+      "title": "KTP Trace Intelligence Specification v0.1",
+      "uri": "https://example.com/origins/ktp-trace-intelligence-spec-v0.1",
+      "content_hash": "sha256:origin-trace-intelligence-spec-example-0001",
+      "relation_type": "explicit_citation",
+      "confidence": 0.89,
+      "evidence_summary": "The target explicitly cites the KTP Trace Intelligence Specification v0.1 and uses its concepts of origin candidates, evidence packets, review status, and separation from automatic allocation.",
+      "limitations": "The citation and structural relevance are strong, but contribution weight and royalty share are not determined by this record."
+    },
+    {
+      "origin_id": "kazene-origin-allocation-readiness-001",
+      "title": "Allocation Readiness Specification",
+      "uri": "https://example.com/origins/allocation-readiness-specification",
+      "content_hash": "sha256:origin-allocation-readiness-example-0001",
+      "relation_type": "conceptual_influence",
+      "confidence": 0.73,
+      "evidence_summary": "The target discusses a readiness layer that separates trace evidence from downstream value allocation decisions.",
+      "limitations": "The target describes allocation readiness conceptually and does not reproduce a full readiness schema or scoring model."
+    }
+  ],
+  "evidence": {
+    "semantic_similarity_score": 0.81,
+    "structure_similarity_score": 0.84,
+    "conceptual_similarity_score": 0.86,
+    "citation_presence": true,
+    "metadata_presence": false,
+    "watermark_presence": false,
+    "chain_of_custody_presence": false,
+    "structure_fingerprint_presence": true,
+    "origin_token_presence": false,
+    "evidence_items": [
+      {
+        "evidence_id": "allocation-readiness-evidence-001",
+        "evidence_type": "citation",
+        "description": "The target includes an explicit citation to the KTP Trace Intelligence Specification v0.1.",
+        "uri": "https://example.com/targets/trace-intelligence-responsible-value-allocation#references",
+        "confidence": 0.95
+      },
+      {
+        "evidence_id": "allocation-readiness-evidence-002",
+        "evidence_type": "structure_fingerprint",
+        "description": "The target follows a similar structure: trace evidence, review status, dispute check, allocation readiness, and separation from automatic payment.",
+        "uri": "https://example.com/evidence/allocation-readiness-structure-comparison-0001",
+        "confidence": 0.84
+      },
+      {
+        "evidence_id": "allocation-readiness-evidence-003",
+        "evidence_type": "semantic_match",
+        "description": "Semantic comparison indicates strong overlap around evidence packets, origin candidates, review processes, and allocation-readiness gates.",
+        "confidence": 0.81
+      },
+      {
+        "evidence_id": "allocation-readiness-evidence-004",
+        "evidence_type": "human_observation",
+        "description": "Manual review confirms that the target meaningfully depends on the cited specification and correctly preserves the distinction between trace evidence and allocation.",
+        "confidence": 0.88
+      },
+      {
+        "evidence_id": "allocation-readiness-evidence-005",
+        "evidence_type": "ai_analysis",
+        "description": "LLM-assisted review finds that the target is suitable for allocation-readiness review, while warning that royalty calculation must remain outside this record.",
+        "confidence": 0.82
+      }
+    ]
+  },
+  "analysis": {
+    "method": "hybrid_analysis",
+    "summary": "The target is a relatively strong trace case because it includes explicit citation, structural relevance, conceptual alignment, and no active dispute. It may proceed to allocation-readiness review.",
+    "reasoning_notes": "The record demonstrates several positive readiness signals: explicit citation is present, the cited origin candidate is relevant, structural similarity is meaningful, and the record has been reviewed. However, this only supports readiness for review, not automatic allocation.",
+    "uncertainty_notes": "Contribution weight, royalty share, and final allocation decision remain unresolved. Additional governance rules, tolerance bands, and allocation criteria would be required before any value distribution."
+  },
+  "review_status": {
+    "state": "reviewed",
+    "reviewer": "human-or-multi-wing-review-process",
+    "reviewed_at": "2026-05-18T13:30:00Z",
+    "notes": "The trace record has been reviewed and may proceed to allocation-readiness review. No automatic royalty allocation is authorized by this record."
+  },
+  "dispute_status": {
+    "disputed": false,
+    "status": "none"
+  },
+  "allocation_readiness": {
+    "ready": true,
+    "reason": "The record includes explicit citation, relevant structural and conceptual evidence, completed review status, and no active dispute. It is ready for allocation-readiness review, not automatic allocation.",
+    "required_next_step": "allocation_readiness_review"
+  },
+  "governance": {
+    "policy_reference": "ktp-origin-audit-example-policy-v0.1",
+    "jurisdiction": "unspecified",
+    "review_body": "allocation-readiness-or-multi-wing-review-process",
+    "notes": "This example demonstrates the boundary between being ready for allocation-readiness review and being approved for actual royalty distribution."
+  }
+}
