@@ -1,0 +1,101 @@
+{
+  "trace_id": "ktp-origin-audit-implicit-absorption-0001",
+  "record_version": "0.1.0",
+  "created_at": "2026-05-18T11:00:00Z",
+  "updated_at": "2026-05-18T11:20:00Z",
+  "observer": {
+    "type": "ai_agent",
+    "name": "KTP-Origin-Audit-Example-Agent",
+    "identifier": "agent:ktp-origin-audit-example:v0.1",
+    "confidence_policy": "Confidence is estimated from structural similarity, conceptual similarity, absence of explicit citation, and uncertainty notes. This record must not be treated as final origin judgment."
+  },
+  "target": {
+    "type": "model_output",
+    "title": "AI-generated explanation of trace-based value circulation",
+    "uri": "https://example.com/targets/ai-generated-trace-value-circulation",
+    "content_hash": "sha256:target-implicit-absorption-example-0001",
+    "captured_at": "2026-05-18T10:45:00Z",
+    "language": "en",
+    "summary": "A model-generated explanation describing how ideas, structures, and AI-mediated derivatives may require origin tracking, review layers, and value circulation mechanisms."
+  },
+  "origin_candidates": [
+    {
+      "origin_id": "kazene-origin-ktp-001",
+      "title": "Kazene Trace Protocol",
+      "uri": "https://example.com/origins/kazene-trace-protocol",
+      "content_hash": "sha256:origin-kazene-trace-protocol-example-0001",
+      "relation_type": "implicit_absorption",
+      "confidence": 0.69,
+      "evidence_summary": "The target appears to reproduce a similar conceptual flow: origin candidate detection, trace evidence preservation, review or dispute handling, allocation readiness, and value circulation. No explicit citation is present.",
+      "limitations": "The relationship may reflect general convergence in AI provenance and governance discourse. There is no direct citation, metadata link, or chain-of-custody evidence."
+    },
+    {
+      "origin_id": "kazene-origin-structure-fingerprint-001",
+      "title": "Structure Fingerprint Specification",
+      "uri": "https://example.com/origins/structure-fingerprint-specification",
+      "content_hash": "sha256:origin-structure-fingerprint-example-0001",
+      "relation_type": "conceptual_influence",
+      "confidence": 0.58,
+      "evidence_summary": "The target emphasizes structural similarity over surface-level textual matching, which resembles the conceptual role of Structure Fingerprint.",
+      "limitations": "The target does not use the same schema, terminology, or explicit structure fingerprint fields."
+    }
+  ],
+  "evidence": {
+    "semantic_similarity_score": 0.66,
+    "structure_similarity_score": 0.74,
+    "conceptual_similarity_score": 0.71,
+    "citation_presence": false,
+    "metadata_presence": false,
+    "watermark_presence": false,
+    "chain_of_custody_presence": false,
+    "structure_fingerprint_presence": true,
+    "origin_token_presence": false,
+    "evidence_items": [
+      {
+        "evidence_id": "implicit-evidence-001",
+        "evidence_type": "structure_fingerprint",
+        "description": "Both the target and the origin candidate use a layered flow from origin detection to trace preservation, review, allocation readiness, and value circulation.",
+        "uri": "https://example.com/evidence/implicit-absorption-structure-comparison-0001",
+        "confidence": 0.74
+      },
+      {
+        "evidence_id": "implicit-evidence-002",
+        "evidence_type": "semantic_match",
+        "description": "Semantic comparison suggests moderate overlap in concepts related to trace evidence, origin candidates, review layers, and value circulation.",
+        "confidence": 0.66
+      },
+      {
+        "evidence_id": "implicit-evidence-003",
+        "evidence_type": "ai_analysis",
+        "description": "LLM-assisted analysis identifies possible implicit absorption but recommends review because no direct citation or provenance metadata is present.",
+        "confidence": 0.63
+      }
+    ]
+  },
+  "analysis": {
+    "method": "hybrid_analysis",
+    "summary": "The target may reflect implicit absorption of Kazene Trace Protocol concepts, especially in the separation of evidence, review, and allocation layers.",
+    "reasoning_notes": "The strongest signal is structural rather than textual. The target does not copy wording directly, but it follows a comparable architecture of trace observation, candidate recording, review, and downstream allocation readiness.",
+    "uncertainty_notes": "This case is inherently uncertain. Similarity may result from independent convergence, common AI governance vocabulary, or multiple blended sources rather than direct absorption."
+  },
+  "review_status": {
+    "state": "pending",
+    "reviewer": "",
+    "notes": "Requires human or multi-wing review before being used in any dispute, attribution, or allocation-readiness process."
+  },
+  "dispute_status": {
+    "disputed": false,
+    "status": "none"
+  },
+  "allocation_readiness": {
+    "ready": false,
+    "reason": "Implicit absorption is uncertain and cannot support allocation without further review, dispute handling, and stronger evidence.",
+    "required_next_step": "multi_wing_review"
+  },
+  "governance": {
+    "policy_reference": "ktp-origin-audit-example-policy-v0.1",
+    "jurisdiction": "unspecified",
+    "review_body": "human-or-multi-wing-review-process",
+    "notes": "This example demonstrates how to document implicit absorption safely without making a final origin judgment."
+  }
+}
