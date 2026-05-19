@@ -1,0 +1,99 @@
+{
+  "trace_id": "ktp-origin-audit-explicit-citation-0001",
+  "record_version": "0.1.0",
+  "created_at": "2026-05-18T12:40:00Z",
+  "updated_at": "2026-05-18T12:55:00Z",
+  "observer": {
+    "type": "ai_agent",
+    "name": "KTP-Origin-Audit-Example-Agent",
+    "identifier": "agent:ktp-origin-audit-example:v0.1",
+    "confidence_policy": "Confidence is estimated from explicit citation, URI reference, semantic alignment, and structural relevance. Explicit citation strengthens the trace claim but does not determine final origin or allocation."
+  },
+  "target": {
+    "type": "article",
+    "title": "Applying Trace Intelligence to AI-Origin Review",
+    "uri": "https://example.com/targets/applying-trace-intelligence-to-ai-origin-review",
+    "content_hash": "sha256:target-explicit-citation-example-0001",
+    "captured_at": "2026-05-18T12:30:00Z",
+    "language": "en",
+    "summary": "An article explaining how trace intelligence records can document origin candidates, evidence, review status, and allocation readiness in AI-mediated creation."
+  },
+  "origin_candidates": [
+    {
+      "origin_id": "kazene-origin-trace-intelligence-spec-001",
+      "title": "KTP Trace Intelligence Specification v0.1",
+      "uri": "https://example.com/origins/ktp-trace-intelligence-spec-v0.1",
+      "content_hash": "sha256:origin-trace-intelligence-spec-example-0001",
+      "relation_type": "explicit_citation",
+      "confidence": 0.88,
+      "evidence_summary": "The target explicitly cites the KTP Trace Intelligence Specification v0.1 and discusses its core concepts, including origin candidates, evidence packets, review status, and allocation readiness.",
+      "limitations": "Explicit citation confirms reference, but it does not automatically establish contribution weight, legal authorship, ownership, or royalty allocation."
+    }
+  ],
+  "evidence": {
+    "semantic_similarity_score": 0.82,
+    "structure_similarity_score": 0.79,
+    "conceptual_similarity_score": 0.84,
+    "citation_presence": true,
+    "metadata_presence": false,
+    "watermark_presence": false,
+    "chain_of_custody_presence": false,
+    "structure_fingerprint_presence": true,
+    "origin_token_presence": false,
+    "evidence_items": [
+      {
+        "evidence_id": "explicit-evidence-001",
+        "evidence_type": "citation",
+        "description": "The target includes an explicit citation to the KTP Trace Intelligence Specification v0.1.",
+        "uri": "https://example.com/targets/applying-trace-intelligence-to-ai-origin-review#references",
+        "confidence": 0.95
+      },
+      {
+        "evidence_id": "explicit-evidence-002",
+        "evidence_type": "semantic_match",
+        "description": "The target discusses similar concepts such as evidence packets, origin candidates, trace review, and allocation readiness.",
+        "confidence": 0.82
+      },
+      {
+        "evidence_id": "explicit-evidence-003",
+        "evidence_type": "structure_fingerprint",
+        "description": "The target follows a similar explanatory sequence: trace record definition, evidence collection, review layer, allocation separation, and safety boundary.",
+        "uri": "https://example.com/evidence/explicit-citation-structure-comparison-0001",
+        "confidence": 0.79
+      },
+      {
+        "evidence_id": "explicit-evidence-004",
+        "evidence_type": "human_observation",
+        "description": "Manual review confirms that the citation is visible and relevant to the target article's main argument.",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "analysis": {
+    "method": "hybrid_analysis",
+    "summary": "The target explicitly cites the KTP Trace Intelligence Specification v0.1 and appears to use it as a conceptual and structural reference.",
+    "reasoning_notes": "This is a relatively strong trace case because explicit citation is present. However, the record still remains an audit example rather than a final origin judgment. Allocation, if considered, would require a separate readiness process.",
+    "uncertainty_notes": "The citation is clear, but the degree of contribution remains open. The target may also include independent analysis, commentary, or other uncited influences."
+  },
+  "review_status": {
+    "state": "reviewed",
+    "reviewer": "human-or-multi-wing-review-process",
+    "reviewed_at": "2026-05-18T12:50:00Z",
+    "notes": "Explicit citation is present and relevant. This record may proceed to allocation-readiness review if needed, but it must not trigger automatic allocation."
+  },
+  "dispute_status": {
+    "disputed": false,
+    "status": "none"
+  },
+  "allocation_readiness": {
+    "ready": true,
+    "reason": "The trace relationship includes explicit citation and relevant conceptual overlap. It may be considered for allocation-readiness review, but this does not mean automatic royalty allocation.",
+    "required_next_step": "allocation_readiness_review"
+  },
+  "governance": {
+    "policy_reference": "ktp-origin-audit-example-policy-v0.1",
+    "jurisdiction": "unspecified",
+    "review_body": "allocation-readiness-or-multi-wing-review-process",
+    "notes": "This example demonstrates a stronger trace case based on explicit citation while preserving the separation between evidence, review, and allocation."
+  }
+}
