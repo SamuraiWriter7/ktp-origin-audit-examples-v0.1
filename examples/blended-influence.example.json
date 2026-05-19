@@ -1,0 +1,117 @@
+{
+  "trace_id": "ktp-origin-audit-blended-influence-0001",
+  "record_version": "0.1.0",
+  "created_at": "2026-05-18T11:30:00Z",
+  "updated_at": "2026-05-18T11:50:00Z",
+  "observer": {
+    "type": "ai_agent",
+    "name": "KTP-Origin-Audit-Example-Agent",
+    "identifier": "agent:ktp-origin-audit-example:v0.1",
+    "confidence_policy": "Confidence is estimated from structural similarity, conceptual overlap, relation type, explicit evidence, and uncertainty notes. Blended influence must not be reduced to a single final origin."
+  },
+  "target": {
+    "type": "article",
+    "title": "A layered framework for AI-origin review and value circulation",
+    "uri": "https://example.com/targets/layered-ai-origin-review-value-circulation",
+    "content_hash": "sha256:target-blended-influence-example-0001",
+    "captured_at": "2026-05-18T11:15:00Z",
+    "language": "en",
+    "summary": "An article proposing a layered system for detecting origin candidates, recording trace evidence, reviewing disputed claims, and preparing possible downstream value allocation."
+  },
+  "origin_candidates": [
+    {
+      "origin_id": "kazene-origin-ktp-001",
+      "title": "Kazene Trace Protocol",
+      "uri": "https://example.com/origins/kazene-trace-protocol",
+      "content_hash": "sha256:origin-kazene-trace-protocol-example-0001",
+      "relation_type": "blended_influence",
+      "confidence": 0.74,
+      "evidence_summary": "The target appears to share the broader KTP flow: trace observation, origin candidate recording, review or dispute handling, allocation readiness, and eventual value circulation.",
+      "limitations": "The target does not explicitly cite Kazene Trace Protocol. Some concepts may also come from general provenance, attribution, or AI governance discussions."
+    },
+    {
+      "origin_id": "kazene-origin-structure-fingerprint-001",
+      "title": "Structure Fingerprint Specification",
+      "uri": "https://example.com/origins/structure-fingerprint-specification",
+      "content_hash": "sha256:origin-structure-fingerprint-example-0001",
+      "relation_type": "structural_similarity",
+      "confidence": 0.68,
+      "evidence_summary": "The target emphasizes identifying internal structural patterns rather than relying only on surface-level textual similarity.",
+      "limitations": "The target does not reproduce the exact schema, scoring method, or terminology of the Structure Fingerprint specification."
+    },
+    {
+      "origin_id": "kazene-origin-allocation-readiness-001",
+      "title": "Allocation Readiness Specification",
+      "uri": "https://example.com/origins/allocation-readiness-specification",
+      "content_hash": "sha256:origin-allocation-readiness-example-0001",
+      "relation_type": "conceptual_influence",
+      "confidence": 0.62,
+      "evidence_summary": "The target separates trace evidence from downstream allocation decisions and requires review before value distribution.",
+      "limitations": "The target only describes allocation readiness at a high level and does not include detailed readiness criteria or governance thresholds."
+    }
+  ],
+  "evidence": {
+    "semantic_similarity_score": 0.69,
+    "structure_similarity_score": 0.77,
+    "conceptual_similarity_score": 0.73,
+    "citation_presence": false,
+    "metadata_presence": false,
+    "watermark_presence": false,
+    "chain_of_custody_presence": false,
+    "structure_fingerprint_presence": true,
+    "origin_token_presence": false,
+    "evidence_items": [
+      {
+        "evidence_id": "blended-evidence-001",
+        "evidence_type": "structure_fingerprint",
+        "description": "The target and several origin candidates share a layered architecture involving observation, evidence recording, review, dispute handling, and allocation readiness.",
+        "uri": "https://example.com/evidence/blended-influence-structure-comparison-0001",
+        "confidence": 0.77
+      },
+      {
+        "evidence_id": "blended-evidence-002",
+        "evidence_type": "semantic_match",
+        "description": "Semantic comparison suggests moderate overlap with multiple Kazene-related specifications rather than one single source.",
+        "confidence": 0.69
+      },
+      {
+        "evidence_id": "blended-evidence-003",
+        "evidence_type": "ai_analysis",
+        "description": "LLM-assisted analysis indicates that the target is best treated as a blended influence case. It should not be forced into a single-origin claim.",
+        "confidence": 0.66
+      },
+      {
+        "evidence_id": "blended-evidence-004",
+        "evidence_type": "human_observation",
+        "description": "Manual review notes that the target combines elements of trace recording, structure comparison, and allocation-readiness separation.",
+        "confidence": 0.7
+      }
+    ]
+  },
+  "analysis": {
+    "method": "hybrid_analysis",
+    "summary": "The target appears to combine several Kazene-related structures into a single layered framework. The strongest relationship is to Kazene Trace Protocol, but Structure Fingerprint and Allocation Readiness also appear relevant.",
+    "reasoning_notes": "The target does not map cleanly to one origin candidate. Its architecture appears to be a composite of several trace-related concepts: origin candidate detection, structural comparison, evidence preservation, review, and allocation separation.",
+    "uncertainty_notes": "Because multiple origin candidates are plausible, this record should avoid single-origin conclusions. The influence may be blended, independently reconstructed, or derived from shared discourse around AI provenance and value circulation."
+  },
+  "review_status": {
+    "state": "pending",
+    "reviewer": "",
+    "notes": "Requires human or multi-wing review to evaluate the relative contribution of each origin candidate. No allocation should be considered until the blended influence pattern is reviewed."
+  },
+  "dispute_status": {
+    "disputed": false,
+    "status": "none"
+  },
+  "allocation_readiness": {
+    "ready": false,
+    "reason": "Blended influence requires review before any contribution weighting or allocation-readiness assessment can occur.",
+    "required_next_step": "multi_wing_review"
+  },
+  "governance": {
+    "policy_reference": "ktp-origin-audit-example-policy-v0.1",
+    "jurisdiction": "unspecified",
+    "review_body": "human-or-multi-wing-review-process",
+    "notes": "This example demonstrates how to document multiple origin candidates without collapsing them into a single final origin."
+  }
+}
