@@ -1,0 +1,404 @@
+name: Validate Examples
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/validate-examples.yml"
+      - "examples/**"
+      - "docs/**"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "CITATION.cff"
+      - "LICENSE"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/validate-examples.yml"
+      - "examples/**"
+      - "docs/**"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "CITATION.cff"
+      - "LICENSE"
+  workflow_dispatch:
+
+jobs:
+  validate-examples:
+    name: Validate KTP Origin Audit Examples
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate example files
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          root = Path(".")
+
+          required_files = [
+              "README.md",
+              "CHANGELOG.md",
+              "CITATION.cff",
+              "LICENSE",
+              "docs/relationship-to-trace-intelligence-spec.md",
+              "docs/audit-methodology.md",
+              "docs/review-guidelines.md",
+              "examples/explicit-citation.example.json",
+              "examples/implicit-absorption.example.json",
+              "examples/blended-influence.example.json",
+              "examples/disputed-trace-claim.example.json",
+              "examples/allocation-readiness-review.example.json",
+          ]
+
+          required_top_level_keys = [
+              "trace_id",
+              "record_version",
+              "created_at",
+              "observer",
+              "target",
+              "origin_candidates",
+              "evidence",
+              "analysis",
+              "review_status",
+              "dispute_status",
+              "allocation_readiness",
+              "governance",
+          ]
+
+          allowed_observer_types = {
+              "human",
+              "ai_agent",
+              "platform",
+              "institution",
+              "hybrid",
+          }
+
+          allowed_target_types = {
+              "text",
+              "article",
+              "prompt",
+              "concept",
+              "structure",
+              "model_output",
+              "image",
+              "audio",
+              "video",
+              "code",
+              "dataset",
+              "other",
+          }
+
+          allowed_relation_types = {
+              "direct_reference",
+              "explicit_citation",
+              "structural_similarity",
+              "conceptual_influence",
+              "semantic_similarity",
+              "implicit_absorption",
+              "derivative_adaptation",
+              "paraphrase",
+              "translation",
+              "blended_influence",
+              "unknown",
+          }
+
+          allowed_review_states = {
+              "pending",
+              "under_review",
+              "reviewed",
+              "disputed",
+              "rejected",
+              "revised",
+              "accepted_as_candidate",
+          }
+
+          allowed_dispute_statuses = {
+              "none",
+              "opened",
+              "under_review",
+              "resolved",
+              "dismissed",
+              "escalated",
+          }
+
+          allowed_next_steps = {
+              "human_review",
+              "multi_wing_review",
+              "dispute_resolution",
+              "additional_evidence",
+              "allocation_readiness_review",
+              "no_action",
+          }
+
+          example_paths = [
+              root / "examples/explicit-citation.example.json",
+              root / "examples/implicit-absorption.example.json",
+              root / "examples/blended-influence.example.json",
+              root / "examples/disputed-trace-claim.example.json",
+              root / "examples/allocation-readiness-review.example.json",
+          ]
+
+          def fail(message: str) -> None:
+              print(f"ERROR: {message}")
+              sys.exit(1)
+
+          def warn(message: str) -> None:
+              print(f"WARNING: {message}")
+
+          def require(condition: bool, message: str) -> None:
+              if not condition:
+                  fail(message)
+
+          def check_confidence(value, context: str) -> None:
+              require(
+                  isinstance(value, (int, float)),
+                  f"{context}: confidence must be a number"
+              )
+              require(
+                  0 <= value <= 1,
+                  f"{context}: confidence must be between 0.0 and 1.0"
+              )
+
+          print("=== Checking required files ===")
+          for file_name in required_files:
+              path = root / file_name
+              require(path.exists(), f"Missing required file: {file_name}")
+              print(f"OK: {file_name}")
+
+          print("\n=== Loading and validating JSON examples ===")
+          records = {}
+
+          for path in example_paths:
+              print(f"\n--- Validating {path} ---")
+
+              try:
+                  with path.open("r", encoding="utf-8") as f:
+                      record = json.load(f)
+              except json.JSONDecodeError as exc:
+                  fail(f"Invalid JSON in {path}: {exc}")
+
+              records[path.name] = record
+
+              for key in required_top_level_keys:
+                  require(key in record, f"{path}: missing required key '{key}'")
+
+              require(
+                  record["record_version"] == "0.1.0",
+                  f"{path}: record_version must be '0.1.0'"
+              )
+
+              observer = record["observer"]
+              require(isinstance(observer, dict), f"{path}: observer must be an object")
+              require(observer.get("type") in allowed_observer_types, f"{path}: invalid observer.type")
+              require(bool(observer.get("name")), f"{path}: observer.name is required")
+
+              target = record["target"]
+              require(isinstance(target, dict), f"{path}: target must be an object")
+              require(target.get("type") in allowed_target_types, f"{path}: invalid target.type")
+              require(bool(target.get("title")), f"{path}: target.title is required")
+              require(bool(target.get("summary")), f"{path}: target.summary is required")
+
+              candidates = record["origin_candidates"]
+              require(isinstance(candidates, list), f"{path}: origin_candidates must be an array")
+              require(len(candidates) >= 1, f"{path}: origin_candidates must contain at least one candidate")
+
+              for index, candidate in enumerate(candidates):
+                  context = f"{path}: origin_candidates[{index}]"
+                  require(bool(candidate.get("origin_id")), f"{context}: origin_id is required")
+                  require(
+                      candidate.get("relation_type") in allowed_relation_types,
+                      f"{context}: invalid relation_type"
+                  )
+                  require("confidence" in candidate, f"{context}: confidence is required")
+                  check_confidence(candidate["confidence"], context)
+                  require(bool(candidate.get("evidence_summary")), f"{context}: evidence_summary is required")
+                  require(bool(candidate.get("limitations")), f"{context}: limitations should be documented")
+
+              evidence = record["evidence"]
+              require(isinstance(evidence, dict), f"{path}: evidence must be an object")
+
+              for score_key in [
+                  "semantic_similarity_score",
+                  "structure_similarity_score",
+                  "conceptual_similarity_score",
+              ]:
+                  if score_key in evidence:
+                      check_confidence(evidence[score_key], f"{path}: evidence.{score_key}")
+
+              evidence_items = evidence.get("evidence_items", [])
+              require(isinstance(evidence_items, list), f"{path}: evidence_items must be an array")
+              require(len(evidence_items) >= 1, f"{path}: at least one evidence item is required")
+
+              for index, item in enumerate(evidence_items):
+                  context = f"{path}: evidence_items[{index}]"
+                  require(bool(item.get("evidence_id")), f"{context}: evidence_id is required")
+                  require(bool(item.get("evidence_type")), f"{context}: evidence_type is required")
+                  require(bool(item.get("description")), f"{context}: description is required")
+                  if "confidence" in item:
+                      check_confidence(item["confidence"], context)
+
+              analysis = record["analysis"]
+              require(bool(analysis.get("summary")), f"{path}: analysis.summary is required")
+              require(bool(analysis.get("reasoning_notes")), f"{path}: analysis.reasoning_notes is required")
+              require(bool(analysis.get("uncertainty_notes")), f"{path}: analysis.uncertainty_notes is required")
+
+              review_status = record["review_status"]
+              require(
+                  review_status.get("state") in allowed_review_states,
+                  f"{path}: invalid review_status.state"
+              )
+
+              dispute_status = record["dispute_status"]
+              require(
+                  isinstance(dispute_status.get("disputed"), bool),
+                  f"{path}: dispute_status.disputed must be boolean"
+              )
+              require(
+                  dispute_status.get("status") in allowed_dispute_statuses,
+                  f"{path}: invalid dispute_status.status"
+              )
+
+              allocation = record["allocation_readiness"]
+              require(
+                  isinstance(allocation.get("ready"), bool),
+                  f"{path}: allocation_readiness.ready must be boolean"
+              )
+              require(bool(allocation.get("reason")), f"{path}: allocation_readiness.reason is required")
+              require(
+                  allocation.get("required_next_step") in allowed_next_steps,
+                  f"{path}: invalid allocation_readiness.required_next_step"
+              )
+
+              governance = record["governance"]
+              require(bool(governance.get("notes")), f"{path}: governance.notes is required")
+
+              print(f"OK: {path}")
+
+          print("\n=== Running KTP semantic safety checks ===")
+
+          for name, record in records.items():
+              review_state = record["review_status"]["state"]
+              disputed = record["dispute_status"]["disputed"]
+              dispute_state = record["dispute_status"]["status"]
+              allocation_ready = record["allocation_readiness"]["ready"]
+              next_step = record["allocation_readiness"]["required_next_step"]
+
+              if disputed:
+                  require(
+                      review_state == "disputed",
+                      f"{name}: disputed records should use review_status.state='disputed'"
+                  )
+                  require(
+                      allocation_ready is False,
+                      f"{name}: disputed records must not be allocation-ready"
+                  )
+                  require(
+                      next_step == "dispute_resolution",
+                      f"{name}: disputed records should require dispute_resolution"
+                  )
+
+              if allocation_ready:
+                  require(
+                      review_state in {"reviewed", "accepted_as_candidate"},
+                      f"{name}: allocation-ready records must be reviewed or accepted_as_candidate"
+                  )
+                  require(
+                      disputed is False and dispute_state == "none",
+                      f"{name}: allocation-ready records must not have active dispute"
+                  )
+                  require(
+                      next_step == "allocation_readiness_review",
+                      f"{name}: allocation-ready records must proceed only to allocation_readiness_review"
+                  )
+
+              for candidate in record["origin_candidates"]:
+                  relation_type = candidate["relation_type"]
+                  confidence = candidate["confidence"]
+
+                  if relation_type == "implicit_absorption":
+                      require(
+                          confidence < 0.80,
+                          f"{name}: implicit_absorption confidence should remain conservative"
+                      )
+                      require(
+                          allocation_ready is False,
+                          f"{name}: implicit_absorption examples should not be allocation-ready"
+                      )
+
+                  if confidence >= 0.95:
+                      warn(
+                          f"{name}: candidate '{candidate['origin_id']}' has very high confidence. "
+                          "Ensure it is still treated as candidate evidence, not final origin judgment."
+                      )
+
+              print(f"OK: semantic safety checks passed for {name}")
+
+          print("\n=== Running category-specific checks ===")
+
+          explicit = records["explicit-citation.example.json"]
+          require(
+              any(c["relation_type"] == "explicit_citation" for c in explicit["origin_candidates"]),
+              "explicit-citation example must include relation_type='explicit_citation'"
+          )
+          require(
+              explicit["evidence"].get("citation_presence") is True,
+              "explicit-citation example must set citation_presence=true"
+          )
+
+          implicit = records["implicit-absorption.example.json"]
+          require(
+              any(c["relation_type"] == "implicit_absorption" for c in implicit["origin_candidates"]),
+              "implicit-absorption example must include relation_type='implicit_absorption'"
+          )
+          require(
+              implicit["allocation_readiness"]["ready"] is False,
+              "implicit-absorption example must not be allocation-ready"
+          )
+
+          blended = records["blended-influence.example.json"]
+          require(
+              len(blended["origin_candidates"]) >= 2,
+              "blended-influence example must include multiple origin candidates"
+          )
+          require(
+              any(c["relation_type"] == "blended_influence" for c in blended["origin_candidates"]),
+              "blended-influence example must include relation_type='blended_influence'"
+          )
+
+          disputed_record = records["disputed-trace-claim.example.json"]
+          require(
+              disputed_record["dispute_status"]["disputed"] is True,
+              "disputed-trace-claim example must be disputed"
+          )
+          require(
+              disputed_record["allocation_readiness"]["ready"] is False,
+              "disputed-trace-claim example must not be allocation-ready"
+          )
+
+          allocation_record = records["allocation-readiness-review.example.json"]
+          require(
+              allocation_record["allocation_readiness"]["ready"] is True,
+              "allocation-readiness-review example must be ready for allocation-readiness review"
+          )
+          require(
+              allocation_record["allocation_readiness"]["required_next_step"] == "allocation_readiness_review",
+              "allocation-readiness-review example must require allocation_readiness_review"
+          )
+
+          print("OK: category-specific checks passed")
+
+          print("\nAll KTP Origin Audit example validations passed.")
+          PY
